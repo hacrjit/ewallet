@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Wallet, Transaction, AuditLog
+from .models import Wallet, Transaction, AuditLog, Notification
 from django.contrib.auth.models import User
 
 # Registration Serializer
@@ -37,3 +37,13 @@ class AuditLogSerializer(serializers.ModelSerializer):
         model = AuditLog
         fields = '__all__'
 
+# Notification Serializer
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields = '__all__'
+
+# Custom Token Obtain Pair Serializer
+class TokenObtainPairSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField(write_only=True)
